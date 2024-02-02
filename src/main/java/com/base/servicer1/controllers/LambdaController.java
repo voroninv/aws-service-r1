@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.model.FunctionConfiguration;
 import com.base.servicer1.constants.Constants;
 import com.base.servicer1.domain.Order;
 import com.base.servicer1.exceptions.BadRequestException;
+import com.base.servicer1.services.ILambdaService;
 import com.base.servicer1.services.LambdaData;
 import com.base.servicer1.services.LambdaService;
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +23,7 @@ public class LambdaController {
     private static final Logger logger = LogManager.getLogger(LambdaController.class);
 
     @Autowired
-    LambdaService lambdaService;
+    ILambdaService lambdaService;
 
     @GetMapping
     @RequestMapping("/list")
