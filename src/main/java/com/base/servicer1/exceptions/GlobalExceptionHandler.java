@@ -1,5 +1,6 @@
 package com.base.servicer1.exceptions;
 
+import com.amazonaws.AmazonServiceException;
 import com.base.servicer1.constants.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,16 +30,16 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(LambdaNotFoundException.class)
-    public ResponseEntity<Object> handleLambdaNotFoundException(LambdaNotFoundException ex) {
+    @ExceptionHandler(AmazonServiceException.class)
+    public ResponseEntity<Object> handleAmazonException(AmazonServiceException ex) {
         logger.error(ex.getMessage());
 
         Map<String, Object> body = new HashMap<>();
-        body.put("error", Constants.NOT_FOUND);
+        body.put("error", Constants.AMAZON_ERROR);
         body.put("message", ex.getMessage());
-        body.put("timestamp", ex.getTimestamp());
+        body.put("timestamp", LocalDateTime.now());
 
-        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(BadRequestException.class)

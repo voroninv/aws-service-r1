@@ -6,7 +6,6 @@ import com.base.servicer1.domain.Order;
 import com.base.servicer1.exceptions.BadRequestException;
 import com.base.servicer1.services.ILambdaService;
 import com.base.servicer1.services.LambdaData;
-import com.base.servicer1.services.LambdaService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,9 +27,9 @@ public class LambdaController {
     @GetMapping
     @RequestMapping("/list")
     public ResponseEntity<List<FunctionConfiguration>> list() {
-        logger.info("r1: lambda list request started.");
+        logger.info("r1: lambda list request received.");
         List<FunctionConfiguration> functionConfigurations = lambdaService.listFunctions();
-        logger.info("r1: lambda list request completed.");
+        logger.info("r1: lambda list request processed.");
 
         return ResponseEntity.ok(functionConfigurations);
     }
