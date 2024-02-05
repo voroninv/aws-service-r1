@@ -2,7 +2,7 @@ package com.base.servicer1.controllers;
 
 import com.amazonaws.services.lambda.model.FunctionConfiguration;
 import com.base.servicer1.constants.Constants;
-import com.base.servicer1.domain.Order;
+import com.base.servicer1.entities.Order;
 import com.base.servicer1.exceptions.BadRequestException;
 import com.base.servicer1.services.ILambdaService;
 import com.base.servicer1.services.LambdaData;

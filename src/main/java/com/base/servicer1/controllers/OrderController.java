@@ -1,6 +1,6 @@
 package com.base.servicer1.controllers;
 
-import com.base.servicer1.domain.Order;
+import com.base.servicer1.entities.Order;
 import com.base.servicer1.services.IOrderService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,11 +41,11 @@ public class OrderController {
 
     @PostMapping
     @RequestMapping("/add")
-    public ResponseEntity<Integer> addOrder(@RequestBody Order order) {
+    public ResponseEntity<Order> addOrder(@RequestBody Order order) {
         logger.info("r1: order add request received.");
-        Integer status = orderService.addOrder(order);
+        Order result = orderService.addOrder(order);
         logger.info("r1: order add request processed.");
 
-        return ResponseEntity.ok(status);
+        return ResponseEntity.ok(result);
     }
 }

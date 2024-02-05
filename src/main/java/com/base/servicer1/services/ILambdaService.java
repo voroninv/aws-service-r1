@@ -1,7 +1,7 @@
 package com.base.servicer1.services;
 
 import com.amazonaws.services.lambda.model.FunctionConfiguration;
-import com.base.servicer1.domain.Order;
+import com.base.servicer1.entities.Order;
 
 import java.util.List;
 

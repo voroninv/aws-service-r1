@@ -1,13 +1,13 @@
 package com.base.servicer1.services;
 
-import com.base.servicer1.domain.Order;
+import com.base.servicer1.entities.Order;
 
 import java.util.List;
 
 public interface IOrderService {
     List<Order> listOrders();
 
-    Integer addOrder(Order order);
+    Order addOrder(Order order);
 
     Order getOrder(Integer id);
 }
