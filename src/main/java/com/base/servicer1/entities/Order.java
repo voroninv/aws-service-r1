@@ -13,11 +13,11 @@ import lombok.NoArgsConstructor;
 @DynamoDBTable(tableName = "orders")
 public class Order {
     @DynamoDBHashKey
-    private int id;
+    private Integer id;
     @DynamoDBAttribute
     private String name;
     @DynamoDBAttribute
     private double price;
     @DynamoDBAttribute
-    private int quantity;
+    private Integer quantity;
 }

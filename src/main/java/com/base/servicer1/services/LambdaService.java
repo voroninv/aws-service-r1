@@ -20,12 +20,10 @@ public class LambdaService implements ILambdaService {
     AWSLambda awsLambda;
 
     public List<FunctionConfiguration> listFunctions() {
-
         return awsLambda.listFunctions().getFunctions();
     }
 
     public List<Order> invokeFunction(LambdaData lambdaData) {
-
         InvokeRequest invokeRequest = new InvokeRequest()
                 .withFunctionName(lambdaData.getLambdaName())
                 .withPayload(lambdaData.getLambdaPayload());
