@@ -7,6 +7,8 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.AWSLambdaClientBuilder;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +42,15 @@ public class AwsConfiguration {
                 .standard()
                 .withRegion(region)
                 .withCredentials(new AWSStaticCredentialsProvider(basicAWSCredentials()))
+                .build();
+    }
+
+    @Bean
+    public AmazonS3 amazonS3() {
+        return AmazonS3ClientBuilder
+                .standard()
+                .withCredentials(new AWSStaticCredentialsProvider(basicAWSCredentials()))
+                .withRegion(region)
                 .build();
     }
 

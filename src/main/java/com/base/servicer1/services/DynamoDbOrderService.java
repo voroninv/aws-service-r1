@@ -2,6 +2,7 @@ package com.base.servicer1.services;
 
 import com.base.servicer1.entities.Order;
 import com.base.servicer1.repositories.OrderRepository;
+import com.base.servicer1.services.interfaces.IDynamoDbOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class OrderService implements IOrderService {
+public class DynamoDbOrderService implements IDynamoDbOrderService {
 
     @Autowired
     OrderRepository orderRepository;

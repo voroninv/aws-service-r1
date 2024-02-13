@@ -1,4 +1,4 @@
-package com.base.servicer1.services;
+package com.base.servicer1.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

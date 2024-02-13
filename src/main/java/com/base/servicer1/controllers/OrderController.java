@@ -1,7 +1,7 @@
 package com.base.servicer1.controllers;
 
 import com.base.servicer1.entities.Order;
-import com.base.servicer1.services.IOrderService;
+import com.base.servicer1.services.interfaces.IDynamoDbOrderService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class OrderController {
     private static final Logger logger = LogManager.getLogger(OrderController.class);
 
     @Autowired
-    IOrderService orderService;
+    IDynamoDbOrderService orderService;
 
     @GetMapping
     @RequestMapping("/list")

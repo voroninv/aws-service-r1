@@ -1,6 +1,6 @@
 package com.base.servicer1.controllers;
 
-import com.base.servicer1.services.IDynamoDbService;
+import com.base.servicer1.services.interfaces.IDynamoDbService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

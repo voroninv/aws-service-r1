@@ -1,4 +1,4 @@
-package com.base.servicer1.services;
+package com.base.servicer1.services.interfaces;
 
 import java.util.List;
 
