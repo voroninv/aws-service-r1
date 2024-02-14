@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.util.List;
 
 public interface IS3ImageService {
+    List<String> listImages();
+
+    InputStreamResource getImage(String key);
+
     String addImage(MultipartFile multipartFile) throws IOException;
 
-    InputStreamResource getImage(String name);
-
-    List<String> listImages();
+    void deleteImage(String key);
 }

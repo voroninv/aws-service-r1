@@ -10,4 +10,6 @@ public interface IDynamoDbOrderService {
     Order addOrder(Order order);
 
     Order getOrder(Integer id);
+
+    void deleteOrder(Integer id);
 }

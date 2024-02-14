@@ -28,8 +28,7 @@ public class DynamoDBController {
         return ResponseEntity.ok(tables);
     }
 
-    @PutMapping
-    @RequestMapping("/create/{tableName}")
+    @PutMapping("/{tableName}")
     public ResponseEntity<String> createTable(@PathVariable String tableName) {
         logger.info("r1: dynamoDb create table request received.");
         String table = dynamoDbService.createTable(tableName);
@@ -38,8 +37,7 @@ public class DynamoDBController {
         return ResponseEntity.ok(table);
     }
 
-    @GetMapping
-    @RequestMapping("/describe/{tableName}")
+    @GetMapping("/describe/{tableName}")
     public ResponseEntity<String> describeTable(@PathVariable String tableName) {
         logger.info("r1: dynamoDb describe table request received.");
         String table = dynamoDbService.describeTable(tableName);
@@ -48,8 +46,7 @@ public class DynamoDBController {
         return ResponseEntity.ok(table);
     }
 
-    @DeleteMapping
-    @RequestMapping("/delete/{tableName}")
+    @DeleteMapping("/{tableName}")
     public ResponseEntity<String> deleteTable(@PathVariable String tableName) {
         logger.info("r1: dynamoDb delete table request received.");
         String table = dynamoDbService.deleteTable(tableName);

@@ -32,7 +32,7 @@ public class S3ImageController {
         return ResponseEntity.ok(images);
     }
 
-    @GetMapping(value = "/image/get/{key}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @GetMapping(value = "/image/{key}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<InputStreamResource> getImage(@PathVariable String key) {
         logger.info("r1: s3 get image request received.");
 
@@ -52,12 +52,21 @@ public class S3ImageController {
                 .body(resource);
     }
 
-    @PostMapping("/image/add")
+    @PutMapping("/image")
     public ResponseEntity<String> addImage(@RequestParam("image") MultipartFile file) throws IOException {
         logger.info("r1: s3 add image request received.");
         String versionId = s3ImageService.addImage(file);
         logger.info("r1: s3 add image request processed.");
 
         return ResponseEntity.ok(versionId);
+    }
+
+    @DeleteMapping("/image/{key}")
+    public ResponseEntity<Void> deleteImage(@PathVariable String key) {
+        logger.info("r1: s3 delete image request received.");
+        s3ImageService.deleteImage(key);
+        logger.info("r1: s3 delete image request processed.");
+
+        return ResponseEntity.ok().build();
     }
 }

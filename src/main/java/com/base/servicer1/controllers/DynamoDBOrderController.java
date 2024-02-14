@@ -12,15 +12,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/r1/api/order")
-public class OrderController {
+public class DynamoDBOrderController {
 
-    private static final Logger logger = LogManager.getLogger(OrderController.class);
+    private static final Logger logger = LogManager.getLogger(DynamoDBOrderController.class);
 
     @Autowired
     IDynamoDbOrderService orderService;
 
-    @GetMapping
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public ResponseEntity<List<Order>> listOrders() {
         logger.info("r1: order list request received.");
         List<Order> orderList = orderService.listOrders();
@@ -29,9 +28,8 @@ public class OrderController {
         return ResponseEntity.ok(orderList);
     }
 
-    @GetMapping
-    @RequestMapping("/get/{id}")
-    public ResponseEntity<Order> listOrders(@PathVariable Integer id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Order> getOrder(@PathVariable Integer id) {
         logger.info("r1: order get request received.");
         Order order = orderService.getOrder(id);
         logger.info("r1: order get request processed.");
@@ -39,13 +37,21 @@ public class OrderController {
         return ResponseEntity.ok(order);
     }
 
-    @PostMapping
-    @RequestMapping("/add")
+    @PutMapping
     public ResponseEntity<Order> addOrder(@RequestBody Order order) {
         logger.info("r1: order add request received.");
         Order result = orderService.addOrder(order);
         logger.info("r1: order add request processed.");
 
         return ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable Integer id) {
+        logger.info("r1: order delete request received.");
+        orderService.deleteOrder(id);
+        logger.info("r1: order delete request processed.");
+
+        return ResponseEntity.ok().build();
     }
 }

@@ -61,4 +61,11 @@ public class S3ImageService implements IS3ImageService {
 
         return versionId;
     }
+
+    @Override
+    public void deleteImage(String key) {
+        DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest(IMAGE_BUCKET_NAME, key);
+        amazonS3.deleteObject(deleteObjectRequest);
+        logger.info(String.format("r1: s3 image: %s deleted.", key));
+    }
 }

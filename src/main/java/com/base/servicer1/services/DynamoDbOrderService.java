@@ -29,4 +29,8 @@ public class DynamoDbOrderService implements IDynamoDbOrderService {
     public Order addOrder(Order order) {
         return orderRepository.save(order);
     }
+
+    public void deleteOrder(Integer id) {
+        orderRepository.deleteById(id);
+    }
 }
