@@ -37,7 +37,6 @@ public class AwsConfiguration {
 
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
-        final BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(accessKeyId, secretAccessKey);
         return AmazonDynamoDBClientBuilder
                 .standard()
                 .withRegion(region)

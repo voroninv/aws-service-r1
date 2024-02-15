@@ -22,9 +22,9 @@ public class DynamoDbService implements IDynamoDbService {
         return amazonDynamoDB.listTables().getTableNames();
     }
 
-    public String createTable(String tableName) {
+    public String createTable(String tableName, Boolean idIsNumber) {
         CreateTableRequest request = new CreateTableRequest()
-                .withAttributeDefinitions(new AttributeDefinition("id", ScalarAttributeType.N))
+                .withAttributeDefinitions(new AttributeDefinition("id", idIsNumber ? ScalarAttributeType.N : ScalarAttributeType.S))
                 .withKeySchema(new KeySchemaElement("id", KeyType.HASH))
                 .withProvisionedThroughput(new ProvisionedThroughput(
                         new Long(10), new Long(10)))

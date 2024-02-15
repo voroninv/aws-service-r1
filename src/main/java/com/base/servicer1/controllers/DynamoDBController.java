@@ -29,9 +29,9 @@ public class DynamoDBController {
     }
 
     @PutMapping("/{tableName}")
-    public ResponseEntity<String> createTable(@PathVariable String tableName) {
+    public ResponseEntity<String> createTable(@PathVariable String tableName, @RequestParam Boolean idIsNumber) {
         logger.info("r1: dynamoDb create table request received.");
-        String table = dynamoDbService.createTable(tableName);
+        String table = dynamoDbService.createTable(tableName, idIsNumber);
         logger.info("r1: dynamoDb create table request processed.");
 
         return ResponseEntity.ok(table);

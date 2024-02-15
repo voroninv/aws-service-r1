@@ -5,7 +5,7 @@ import java.util.List;
 public interface IDynamoDbService {
     List<String> listTables();
 
-    String createTable(String tableName);
+    String createTable(String tableName, Boolean idIsNumber);
 
     String describeTable(String tableName);
 
