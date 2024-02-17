@@ -24,8 +24,7 @@ public class LambdaController {
     @Autowired
     ILambdaService lambdaService;
 
-    @GetMapping
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public ResponseEntity<List<FunctionConfiguration>> list() {
         logger.info("r1: lambda list request received.");
         List<FunctionConfiguration> functionConfigurations = lambdaService.listFunctions();

@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,6 +21,7 @@ public class S3ImageService implements IS3ImageService {
 
     private static final Logger logger = LogManager.getLogger(S3ImageService.class);
     private static final String IMAGE_BUCKET_NAME = "eu-north-1-images";
+    private static final String SERVICE_NAME = "service-r1";
 
     @Autowired
     AmazonS3 amazonS3;
@@ -49,11 +52,21 @@ public class S3ImageService implements IS3ImageService {
 
     @Override
     public String addImage(MultipartFile multipartFile) throws IOException {
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setUserMetadata(
+                Map.of(
+                        "contentType", Objects.requireNonNull(multipartFile.getContentType()),
+                        "name", multipartFile.getName(),
+                        "size", String.valueOf(multipartFile.getSize()),
+                        "service", SERVICE_NAME
+                )
+        );
+
         PutObjectRequest putObjectRequest = new PutObjectRequest(
                 IMAGE_BUCKET_NAME,
                 multipartFile.getOriginalFilename(),
                 multipartFile.getInputStream(),
-                null
+                objectMetadata
         );
         PutObjectResult putObjectResult = amazonS3.putObject(putObjectRequest);
         String versionId = putObjectResult.getVersionId();
