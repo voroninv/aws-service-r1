@@ -18,8 +18,7 @@ public class S3Controller {
     @Autowired
     IS3Service s3Service;
 
-    @GetMapping()
-    @RequestMapping("/list")
+    @GetMapping("/bucket/list")
     public ResponseEntity<List<String>> listBuckets() {
         logger.info("r1: s3 list buckets request received.");
         List<String> buckets = s3Service.listBuckets();
@@ -28,8 +27,7 @@ public class S3Controller {
         return ResponseEntity.ok(buckets);
     }
 
-    @PutMapping
-    @RequestMapping("/create/{bucketName}")
+    @PutMapping("/bucket/create/{bucketName}")
     public ResponseEntity<String> createBucket(@PathVariable String bucketName) {
         logger.info("r1: s3 create bucket request received.");
         String bucket = s3Service.createBucket(bucketName);
@@ -38,8 +36,7 @@ public class S3Controller {
         return ResponseEntity.ok(bucket);
     }
 
-    @DeleteMapping
-    @RequestMapping("/delete/{bucketName}")
+    @DeleteMapping("/bucket/delete/{bucketName}")
     public ResponseEntity<String> deleteBucket(@PathVariable String bucketName) {
         logger.info("r1: s3 delete bucket request received.");
         s3Service.deleteBucket(bucketName);

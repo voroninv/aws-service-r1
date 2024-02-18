@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/r1/api/order")
-public class DynamoDBOrderController {
+@RequestMapping("/r1/api/dynamo")
+public class DynamoOrderController {
 
-    private static final Logger logger = LogManager.getLogger(DynamoDBOrderController.class);
+    private static final Logger logger = LogManager.getLogger(DynamoOrderController.class);
 
     @Autowired
     IDynamoDbOrderService orderService;
 
-    @GetMapping("/list")
+    @GetMapping("/order/list")
     public ResponseEntity<List<Order>> listOrders() {
         logger.info("r1: order list request received.");
         List<Order> orderList = orderService.listOrders();
@@ -28,7 +28,7 @@ public class DynamoDBOrderController {
         return ResponseEntity.ok(orderList);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/order/{id}")
     public ResponseEntity<Order> getOrder(@PathVariable Integer id) {
         logger.info("r1: order get request received.");
         Order order = orderService.getOrder(id);
@@ -37,7 +37,7 @@ public class DynamoDBOrderController {
         return ResponseEntity.ok(order);
     }
 
-    @PutMapping
+    @PutMapping("/order")
     public ResponseEntity<Order> addOrder(@RequestBody Order order) {
         logger.info("r1: order add request received.");
         Order result = orderService.addOrder(order);
@@ -46,7 +46,7 @@ public class DynamoDBOrderController {
         return ResponseEntity.ok(result);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/order/{id}")
     public ResponseEntity<Void> deleteOrder(@PathVariable Integer id) {
         logger.info("r1: order delete request received.");
         orderService.deleteOrder(id);

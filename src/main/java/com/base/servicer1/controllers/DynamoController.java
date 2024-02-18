@@ -10,16 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/r1/api/dynamoDb")
-public class DynamoDBController {
+@RequestMapping("/r1/api/dynamo")
+public class DynamoController {
 
-    private static final Logger logger = LogManager.getLogger(DynamoDBController.class);
+    private static final Logger logger = LogManager.getLogger(DynamoController.class);
 
     @Autowired
     IDynamoDbService dynamoDbService;
 
-    @GetMapping
-    @RequestMapping("/list")
+    @GetMapping("/table/list")
     public ResponseEntity<List<String>> listTables() {
         logger.info("r1: dynamoDb list tables request received.");
         List<String> tables = dynamoDbService.listTables();
@@ -28,7 +27,7 @@ public class DynamoDBController {
         return ResponseEntity.ok(tables);
     }
 
-    @PutMapping("/{tableName}")
+    @PutMapping("/table/{tableName}")
     public ResponseEntity<String> createTable(@PathVariable String tableName, @RequestParam Boolean idIsNumber) {
         logger.info("r1: dynamoDb create table request received.");
         String table = dynamoDbService.createTable(tableName, idIsNumber);
@@ -37,7 +36,7 @@ public class DynamoDBController {
         return ResponseEntity.ok(table);
     }
 
-    @GetMapping("/describe/{tableName}")
+    @GetMapping("/table/describe/{tableName}")
     public ResponseEntity<String> describeTable(@PathVariable String tableName) {
         logger.info("r1: dynamoDb describe table request received.");
         String table = dynamoDbService.describeTable(tableName);
@@ -46,7 +45,7 @@ public class DynamoDBController {
         return ResponseEntity.ok(table);
     }
 
-    @DeleteMapping("/{tableName}")
+    @DeleteMapping("/table/{tableName}")
     public ResponseEntity<String> deleteTable(@PathVariable String tableName) {
         logger.info("r1: dynamoDb delete table request received.");
         String table = dynamoDbService.deleteTable(tableName);
