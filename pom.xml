@@ -84,7 +84,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>service-r2</finalName>
+		<finalName>service-r1</finalName>
 	</build>
 
 </project>
