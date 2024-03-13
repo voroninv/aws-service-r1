@@ -8,6 +8,6 @@ RUN mvn clean install
 #Stage 2: Run
 FROM openjdk:17-alpine
 WORKDIR /app
-COPY --from=build /app/target/service-r1-0.0.1-SNAPSHOT.jar ./service-r1-0.0.1-SNAPSHOT.jar
+COPY --from=build /app/target/aws-service-r1-0.0.1-SNAPSHOT.jar ./aws-service-r1-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
-CMD ["java", "-jar", "service-r1-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "aws-service-r1-0.0.1-SNAPSHOT.jar"]
