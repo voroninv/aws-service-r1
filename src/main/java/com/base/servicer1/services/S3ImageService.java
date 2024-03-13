@@ -21,7 +21,7 @@ public class S3ImageService implements IS3ImageService {
 
     private static final Logger logger = LogManager.getLogger(S3ImageService.class);
     private static final String IMAGE_BUCKET_NAME = "eu-north-1-images";
-    private static final String SERVICE_NAME = "service-r1";
+    private static final String SERVICE_NAME = "aws-service-r1";
 
     @Autowired
     AmazonS3 amazonS3;

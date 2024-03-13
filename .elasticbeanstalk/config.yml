@@ -1,11 +1,11 @@
 branch-defaults:
   master:
-    environment: service-r1-dev
+    environment: aws-service-r1-dev
     group_suffix: null
 deploy:
-  artifact: target/service-r1-0.0.1-SNAPSHOT.jar
+  artifact: target/aws-service-r1-0.0.1-SNAPSHOT.jar
 global:
-  application_name: service-r1
+  application_name: aws-service-r1
   branch: null
   default_ec2_keyname: null
   default_platform: Corretto 17 running on 64bit Amazon Linux 2023

@@ -1,4 +1,4 @@
-## service-r1
+## aws-service-r1
 AWS SDK showcase
 
 <br/>

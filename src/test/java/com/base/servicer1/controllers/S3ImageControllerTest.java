@@ -27,29 +27,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
    Need to mock all components.
 */
 
-    @WebMvcTest(S3ImageController.class)
-    public class S3ImageControllerTest {
+@WebMvcTest(S3ImageController.class)
+public class S3ImageControllerTest {
 
-        private static final String TEST_DATA = "test";
+    private static final String TEST_DATA = "test";
 
-        @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-        @Autowired
-        private MockMvc mockMvc;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    private MockMvc mockMvc;
 
-        @MockBean
-        private IS3ImageService s3ImageService;
+    @MockBean
+    private IS3ImageService s3ImageService;
 
-        @Test
-        public void listImagesTest() throws Exception {
-            when(s3ImageService.listImages()).thenReturn(List.of("image1", "image2"));
+    @Test
+    public void listImagesTest() throws Exception {
+        when(s3ImageService.listImages()).thenReturn(List.of("image1", "image2"));
 
-            this.mockMvc.perform(get("/r1/api/s3/image/list"))
-                    .andDo(print())
-                    .andExpect(status().isOk())
-                    .andExpect(content().contentType("application/json"))
-                    .andExpect(jsonPath("$[0]").value("image1"))
-                    .andExpect(jsonPath("$[1]").value("image2"));
-        }
+        this.mockMvc.perform(get("/r1/api/s3/image/list"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$[0]").value("image1"))
+                .andExpect(jsonPath("$[1]").value("image2"));
+    }
 
     @Test
     public void getImageTest() throws Exception {
