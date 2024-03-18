@@ -21,6 +21,13 @@ It shows how easily  you can build Java applications that work with Amazon S3, L
 
 <br/>
 
+## GitHub action
+There are also two **GitHub** workflows configured for CI/CD automation:
+- develop configuration is for running tests and packaging an application.
+- master configuration contains steps for testing, building and deploying service to Amazon Elastic Beanstalk. 
+
+<br/>
+
 ## Prerequisites
 - AWS Account: You should have an Amazon Web Services account to be able to work with AWS SDK.
 - AWS Security Credentials: access keys that allow us to make programmatic calls to AWS API actions. You can use either AWS root account credentials or IAM user credentials.
