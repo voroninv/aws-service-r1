@@ -13,6 +13,10 @@ import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRep
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.sqs.SqsClient;
 
 @Configuration
 @EnableDynamoDBRepositories(basePackages = "com.base.servicer1.repositories")
@@ -54,7 +58,20 @@ public class AwsConfiguration {
     }
 
     @Bean
+    SqsClient sqsClient() {
+        return SqsClient.builder()
+                .region(Region.EU_NORTH_1)
+                .credentialsProvider(StaticCredentialsProvider.create(awsBasicCredentials()))
+                .build();
+    }
+
+    @Bean
     AWSCredentials basicAWSCredentials() {
         return new BasicAWSCredentials(accessKeyId, secretAccessKey);
+    }
+
+    @Bean
+    AwsBasicCredentials awsBasicCredentials() {
+        return AwsBasicCredentials.create(accessKeyId, secretAccessKey);
     }
 }
