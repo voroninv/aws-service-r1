@@ -18,6 +18,7 @@ It shows how easily  you can build Java applications that work with Amazon S3, L
 - LambdaController: create, invoke, delete and list available functions;
 - S3Controller: create, delete or list available s3 buckets;
 - S3ImageController: upload, download, delete or list image files.
+- SQSController: create, delete or list queues and send or receive messages.
 
 <br/>
 
@@ -39,6 +40,7 @@ There are also two **GitHub** workflows configured for CI/CD automation:
 - aws java sdk lambda;
 - aws java sdk dynamodb;
 - aws java sdk s3;
+- aws java sdk sqs;
 - derjust spring data dynamodb;
 - apache commons lang;
 - log4j;
