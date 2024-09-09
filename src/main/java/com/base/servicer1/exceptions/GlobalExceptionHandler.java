@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import software.amazon.awssdk.services.sqs.model.SqsException;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -35,6 +36,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(JsonException.class)
     public ResponseEntity<Object> handleJsonException(JsonException ex) {
         return new ResponseEntity<>(body(ex), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(SqsException.class)
+    public ResponseEntity<Object> handleSqsException(SqsException ex) {
+        String errorMessage = ex.awsErrorDetails().errorMessage();
+        logger.error(ex.getClass().getName() + ": " + errorMessage);
+        return new ResponseEntity<>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     private static Map<String, Object> body(Throwable throwable) {
